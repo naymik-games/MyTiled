@@ -1,0 +1,438 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: Sans Serif;
+    background-color: rgb(15, 17, 29);
+}
+
+canvas {
+    display: block;
+}
+
+#desktop {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+
+#menubar {
+    flex-basis: 1.1em;
+    flex-grow: 0;
+    background-color: #777;
+}
+
+#middle {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+#statusbar {
+    flex-basis: 1.1em;
+    flex-grow: 0;
+    background-color: #777;
+}
+
+#canvasarea {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+    overflow: auto;
+    resize: horizontal;
+}
+
+#toolbar {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    overflow: auto;
+		background-color: gray
+}
+
+.tool {
+	font-family: 'Font Awesome';
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5em;
+	width: 32px;
+	height: 32px;
+	background-color: #FFF;
+}
+.tool:hover {
+	background-color: rgb(252, 195, 195);
+}
+
+.menu {
+	position: relative;
+	display: inline-block;
+	margin-left: 15px;
+	z-index: 2;
+}
+.menu-picker {
+	position: relative;
+	display: inline-block;
+	margin-left: 15px;
+	z-index: 2;
+}
+.title {
+    padding: 0.15em;
+}
+
+.title:hover {
+	color: #FFF;
+}
+
+.menu_content {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: none;
+	background-color: #777;
+	min-width: 100px;
+}
+
+.menu_content > li {
+    padding: 0.2em;
+}
+
+.menu_content > li:hover {
+	color: #FFF;
+}
+
+.popup {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.window {
+	width: 50%;
+	height: 50%;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	background-color: white;
+	border: solid 1px black;
+}
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.space {
+	width: 75%;
+	height: 75%;
+
+	overflow: auto;
+	/* display: flex; */
+	flex-direction: column;
+	align-items: center;
+	/* justify-content: space-around; */
+	background-color: white;
+	border: solid 1px black;
+}
+.row {
+	width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.row > label {
+    min-width: 10em;
+}
+
+.row > input {
+    min-width: 15em;
+    box-sizing: border-box;
+}
+
+.row > input[type="file"] {
+    max-width: 15em;
+}
+
+#tools {
+    display: flex;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+#tileIcons, #collisionTiles {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.tileIcon {
+	display: block;
+	border: dashed 1px #CCC;
+	box-sizing: border-box;
+}
+
+.collisionTileIcon {
+  display: block;
+  box-sizing: border-box;
+  margin: 2px;
+}
+
+.tile {
+	display: inline-flex;
+	flex-wrap: wrap;
+	margin: 2px;
+}
+
+.tileBorder{
+	background-color: black;
+}
+
+.tileBorderDelete{
+	background-color: red;
+}
+
+
+.square {
+	display: block;
+	background-color: gray;
+}
+
+.selected {
+    border: solid 1px red;
+}
+
+#canvas-toolbar {
+    display: flex;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+		background-color: #fafafa;
+}
+
+#canvas-toolbar > * {
+  margin-left: 1em;
+}
+
+
+
+/* The navigation menu */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+	font-family: Lato, sans-serif;
+}
+
+/* Navigation links */
+.navbar a {
+  float: left;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* The subnavigation menu */
+.subnav {
+  float: left;
+  overflow: hidden;
+}
+
+/* Subnav button */
+.subnav .subnavbtn {
+  font-size: 14px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 8px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Add a red background color to navigation links on hover */
+.navbar a:hover, .subnav:hover .subnavbtn {
+  background-color: rgb(87, 80, 80);
+
+}
+
+/* Style the subnav content - positioned absolute */
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: rgb(87, 80, 80);
+  width: 100%;
+  z-index: 1;
+}
+
+/* Style the subnav links */
+.subnav-content a {
+  float: left;
+  color: white;
+  text-decoration: none;
+}
+
+/* Add a grey background color on hover */
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+}
+
+/* When you move the mouse over the subnav container, open the subnav content */
+.subnav:hover .subnav-content {
+  display: block;
+}
+
+/* :root {
+  --color-lightest: #f9fdfe;
+  --color-gray-light: #cdcfcf;
+  --color-gray-medium: #686a69;
+  --color-gray-dark: #414643;
+  --color-darkest: #2a2f2c;
+} */
+
+.contact-form {
+  width: 90vw;
+  max-width: 550px;
+  margin: 0 auto;
+	
+}
+.contact-form h2 {
+	color: #414643;
+  font-family: Lato, sans-serif;
+	margin: 5px 0;
+}
+.contact-form form {
+  position: relative;
+	display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  margin: 0;
+  padding: 1rem 0 2rem;
+  border-top: 1px solid #cdcfcf;
+  border-bottom: 1px solid #cdcfcf;
+  overflow: hidden;
+}
+
+.input-group {
+  margin-top: 0.25rem;
+  padding: 0.5rem 1rem;
+	justify-content: space-around;
+}
+
+.contact-form label {
+  
+  color: #414643;
+  font-family: Lato, sans-serif;
+  font-size: 90%;
+  line-height: 1.125;
+}
+
+.group-label {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 90%;
+}
+
+.contact-form label.inline {
+  display: inline-block;
+  margin-left: 0.25rem;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea{
+  display: block;
+  margin-top: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cdcfcf;
+  width:40%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  transition: 150ms border-color linear;
+}
+.contact-form input[type="file"] {
+	width:100%;
+}
+.contact-form input[type=checkbox],
+.contact-form input[type=radio] {
+  display: inline-block;
+  width: auto;
+}
+
+.contact-form input[type=checkbox]:not(:first-of-type),
+.contact-form input[type=radio]:not(:first-of-type) {
+  margin-left: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form input:active {
+  border-color: #686a69;
+}
+
+.contact-form button {
+
+  display: block;
+  margin: 0.5rem 1rem 0;
+  padding: 0 1rem 0.125rem;
+  background-color: #686a69;
+  border: 0;
+  color:  #f9fdfe;
+  font-family: lato, sans-serif;
+  font-size: 100%;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  transition: 150ms all linear;
+}
+
+.contact-form button:hover,
+.contact-form button:active,
+.contact-form button:focus {
+  background: #2a2f2c;
+  cursor: pointer;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
